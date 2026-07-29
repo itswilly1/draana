@@ -1,0 +1,7 @@
+# Fotos-fonte enviadas pela cliente — não são usadas pelo site.
+# As versões servidas já estão derivadas em assets/img/ (jpg + webp, múltiplas larguras).
+IMG_*.jpeg
+WhatsApp Image *.jpeg
+
+# macOS
+.DS_Store
