@@ -20,6 +20,24 @@ O `README.md` explica **por que** o design é assim (paleta, tipografia, o conce
 lente). Este arquivo cobre **como mexer sem quebrar**. Leia o README antes de alterar
 qualquer decisão visual — ela foi tomada por um motivo declarado.
 
+## Comandos
+
+Não há build, lint nem testes — editar o arquivo e recarregar é o ciclo inteiro.
+Não existe `package.json`, `Makefile` nem tooling de qualquer tipo.
+
+```sh
+# Sanity check contra o nginx que já está no ar (leitura; não sobe processo nenhum)
+curl -sI http://localhost:8080/draana/ | head -1
+curl -s  http://localhost:8080/draana/ | grep -o '<meta name="robots"[^>]*>'
+
+# Publicar/atualizar a prévia — o Pages republica sozinho em ~1 min, mesma URL
+git add -A && git commit -m "..." && git push
+
+# Conferir o que a prévia está servindo de verdade
+curl -s https://itswilly1.github.io/draana/ | grep -o '<meta name="robots"[^>]*>'
+gh api repos/itswilly1/draana/pages/builds/latest --jq '{status,error}'
+```
+
 ## Rodar e ver
 
 Existe um nginx permanente servindo `~/Dev/web/sites`. Este projeto está em:
